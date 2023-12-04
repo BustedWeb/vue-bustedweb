@@ -1,8 +1,6 @@
 <script setup>
-import Home from './views/Home.vue'
-import HelloWorld from './components/HelloWorld.vue'
-//import TheWelcome from './components/TheWelcome.vue'
 import Navbar from './components/Navbar.vue';
+import Footer from './components/Footer.vue';
 </script>
 
 <template>
@@ -27,8 +25,10 @@ import Navbar from './components/Navbar.vue';
         
       </ul>
     -->
-    <Navbar />
+    <Navbar />  
+    
     <router-view /> <!-- Esto mostrará el componente correspondiente según la ruta actual -->
+    <Footer />
   </div>
 </template>
 
