@@ -27,7 +27,7 @@ import Footer from './components/Footer.vue';
     -->
     <Navbar />  
     
-    <router-view /> <!-- Esto mostrará el componente correspondiente según la ruta actual -->
+    <router-view />
     <Footer />
   </div>
 </template>

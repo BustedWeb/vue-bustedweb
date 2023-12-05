@@ -27,16 +27,18 @@
                 </div>
 
                 <div  class="error-message"></div>
+
                 <div class="img-wrap">
                   <div class="loading-container s2" id="bar">
                     <div class="loading-bar s2" id="progress-bar"></div>
                   </div>
+                  <loading-bar ref="loadingBar"></loading-bar>
                 </div>
             </div>
             <div class="wrapper">
-              <div class="page-desc s3" id="m2">
-                <span class="mlink">We are reviewing all the links found in the URL.</span>
-                <span class="mlink">This might take a few seconds.</span>
+              <div class="page-desc">
+                <span class="mlink">{{message1}}</span>
+                <span class="mlink">{{message2}}</span>
               </div>
             </div>
         </section>
@@ -96,12 +98,15 @@
   <script>
   import axios from 'axios';
   import Message from '../components/Message.vue';
+  import LoadingBar from '@/components/LoadingBar.vue';
 
   export default {
     data() {
       return {
         shout: '',
         messageEmptyURL:'',
+        message1:'',
+        message2:''
       };
     },
     methods: {
@@ -117,6 +122,10 @@
             console.log(this.messageEmptyURL);
             return;
           }
+          this.messageEmptyURL = '';
+          this.$refs.loadingBar.startLoading();
+          this.message1='We are reviewing all the links found in the URL.';
+          this.message2='This might take a few seconds.';
           console.log('Searching!!');
           let api = `https://api.bustedweb.me/check/${url}/`
           console.log(api);
@@ -128,10 +137,11 @@
           // Manejar errores en la petición
           console.error('Error al hacer la petición:', error);
         }
-      },
+      }
     },
     components: {
       Message,
+      LoadingBar,
     },
   };
   </script>
