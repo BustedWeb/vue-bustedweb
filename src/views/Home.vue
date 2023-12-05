@@ -14,9 +14,7 @@
                             <span class="error"></span>
                             <label for="siteAuditForm" class="sr-only">Domain entry form for site analysis.</label>
                             <input type="text" ref="inputField" name="url"  placeholder="Enter your domain" required="">
-
-                    
-                            <button type="submit" @click="handleClick">
+                            <button type="submit" @click="handleClick" class="custom">
                                 <span>Look for Broken Links</span>
                             </button>
                         </div>
@@ -24,9 +22,11 @@
                 </div>
 
 
-                <div class="page-desc s0" id="message">
-                  <span class="mlink">Please introduce you URL</span>
+                <div class="page-desc">
+                  <span class="mlink">{{ messageEmptyURL }}</span>
                 </div>
+
+                <div  class="error-message"></div>
                 <div class="img-wrap">
                   <div class="loading-container s2" id="bar">
                     <div class="loading-bar s2" id="progress-bar"></div>
@@ -94,20 +94,40 @@
   </template>
   
   <script>
+  import axios from 'axios';
   import Message from '../components/Message.vue';
 
   export default {
     data() {
       return {
-      //  text: '',
         shout: '',
+        messageEmptyURL:'',
       };
     },
     methods: {
-      handleClick() {
-        const message = this.$refs.inputField.value;
-        console.log(message);
-//        this.shout = `${message.toUpperCase()}!!!`;
+      async handleClick() {
+        //const url = this.$refs.inputField.value;
+        //console.log('url: '+url);
+        try {
+          const url = this.$refs.inputField.value;
+        
+          if (!url.trim()) {
+            // Actualizar la propiedad errorMessage si el campo está vacío
+            this.messageEmptyURL = 'Please introduce you URL.';
+            console.log(this.messageEmptyURL);
+            return;
+          }
+          console.log('Searching!!');
+          let api = `https://api.bustedweb.me/check/${url}/`
+          console.log(api);
+          const response = await axios.get(api);
+
+          // Aquí puedes manejar la respuesta, por ejemplo, mostrando en la consola
+          console.log('Respuesta:', response.data);
+        } catch (error) {
+          // Manejar errores en la petición
+          console.error('Error al hacer la petición:', error);
+        }
       },
     },
     components: {
@@ -116,6 +136,9 @@
   };
   </script>
   
-  <style>
+  <style scoped>
   /* Estilos de tu componente Home aquí */
+  .custom:hover {
+    font-weight: 700;
+  }
   </style>
