@@ -14,15 +14,18 @@
     },
     methods: {
       startLoading() {
-        this.loading = true;
-        let interval = setInterval(() => {
-          this.progress += 10;
-          if (this.progress >= 100) {
-            clearInterval(interval);
-            this.loading = false;
-            this.progress = 0;
-          }
-        }, 500);
+        return new Promise((resolve) => {
+          this.loading = true;
+          let interval = setInterval(() => {
+            this.progress += 10;
+            if (this.progress >= 100) {
+              clearInterval(interval);
+              this.loading = false;
+              this.progress = 0;
+              resolve(); // Resuelve la promesa cuando la carga ha terminado
+            }
+          }, 500);
+        });
       }
     }
   };
@@ -34,8 +37,5 @@
     height: 20px;
     margin: 20px 0;
   }
-
-  .progress-bar {
-  /*  background-color: #4caf50;*/ /* Color de la barra de carga */
-  }
+ 
   </style>

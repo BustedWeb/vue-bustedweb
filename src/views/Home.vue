@@ -29,18 +29,19 @@
                 <div  class="error-message"></div>
 
                 <div class="img-wrap">
-                  <loading-bar ref="loadingBar"></loading-bar>
+                  <loading-bar ref="loadingBar" @loading-finished="showSecondLoader"></loading-bar>
                 </div>
             </div>
-            <div class="wrapper">
-              <div class="page-desc" v-if="loadingInfo">
+            <div class="wrapper" v-if="loadingInfo">
+              <div class="page-desc">
                 <span class="mlink">{{message1}}</span>
                 <span class="mlink">{{message2}}</span>
               </div>
+              <div id="loader" class="loader"></div>
             </div>
         </section>
 
-        <section class="results" id="results">
+        <section class="results"  v-if="responseData !== null">
             <div class="wrapper">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
@@ -66,20 +67,23 @@
                   </ul>
                   
                   <div class="tab-content">
-                    <div id="loader" class="loader"></div>
                     <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <ul class="list-group" id="resultados">
-                      <li class="list-group-item listext">
+                      <li v-for="(item, index) in responseData" :key="index" class="list-group-item">
                         <span class="reddot"></span>
-                        <span class="textrs"><a href="We didn't find broken links" target="_blank">We didn't find broken links</a></span>
-                        <span class="mlink"> &nbsp;  &nbsp; 0</span>
+                        <span class="textrs">
+                          <a :href="item.ruta" target="_blank">{{ item.ruta }}</a>
+                        </span>
+                        <span class="mlink"> &nbsp; &nbsp; {{ item.status }}</span>
                         <span class="flex-spacer"></span>
+                        <!--
                         <button type="button" class="btn btn-outline-danger" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
                           </svg>
                           <span class="textbutton">View issue</span>
                         </button>
+                        -->
                       </li>
                     </ul>
                     </div>
@@ -117,10 +121,15 @@
         shout: '',
         messageEmptyURL:'',
         message1:'',
-        message2:''
+        message2:'',
+        responseData: null
       };
     },
     methods: {
+      showSecondLoader() {
+        this.loadingInfo = true;
+        console.log("YES!!")
+      },
       async handleClick() {
         //const url = this.$refs.inputField.value;
         //console.log('url: '+url);
@@ -135,19 +144,18 @@
           }
           this.messageEmptyURL = '';
           await this.$refs.loadingBar.startLoading();
-
+          this.showSecondLoader();
           
           this.message1 = 'We are reviewing all the links found in the URL.';
           this.message2 = 'This might take a few seconds.';
           console.log('Searching!!');
           let api = `https://api.bustedweb.me/check/${url}/`
           console.log(api);
-          this.loadingInfo =  true;
+          //this.loadingInfo =  true;
           const response = await axios.get(api);
 
           console.log('Respuesta:', response.data);
-          this.responseData = response.data.ruta;
-          console.log(this.responseData)
+          this.responseData = response.data;
         } catch (error) {
           // Manejar errores en la petición
           console.error('Error al hacer la petición:', error);
