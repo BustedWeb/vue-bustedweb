@@ -20,13 +20,9 @@
                         </div>
                     </div>
                 </div>
-
-
                 <div class="page-desc">
                   <span class="mlink">{{ messageEmptyURL }}</span>
                 </div>
-
-                <div  class="error-message"></div>
 
                 <div class="img-wrap">
                   <loading-bar ref="loadingBar" @loading-finished="showSecondLoader"></loading-bar>
