@@ -7,15 +7,15 @@
         <section class="main-screen">
             <div class="wrapper">
                 <div class="content-part__wrapper">
-                    <h1 class="page-title">A broken link on your website can negatively affect user experience and SEO.</h1>
-                    <h3 class="page-desc">Regularly checking and fixing broken links is important for maintaining a positive user experience and preserving your site's search engine ranking.</h3>
+                    <h1 class="page-title">{{ $t('welcomeMsg') }}</h1>
+                    <h3 class="page-desc">{{ $t('smallMsg') }}</h3>
                     <div class="audit__testCase">
                         <div id="audit__form" class="article__seo-search audit__form free-trial-form" action="">
                             <span class="error"></span>
                             <label for="siteAuditForm" class="sr-only">Domain entry form for site analysis.</label>
-                            <input type="text" ref="inputField" name="url"  placeholder="Enter your domain" required="">
+                            <input type="text" ref="inputField" name="url" :placeholder="$t('searchInput1')" required="">
                             <button type="submit" @click="handleClick" class="custom">
-                                <span>Look for Broken Links</span>
+                                <span>{{$t('searchInput2')}}</span>
                             </button>
                         </div>
                     </div>
@@ -107,6 +107,7 @@
   
   <script>
   import axios from 'axios';
+  import i18n from '../plugins/i18n';  
   import Message from '../components/Message.vue';
   import LoadingBar from '@/components/LoadingBar.vue';
 
@@ -160,9 +161,22 @@
           this.message1 = '';
           this.message2 = '';
         }
+      },
+      changeLocale(locale) {
+        console.log('Changing locale to', locale);
+        i18n.locale = locale;
+
+        i18n.getLocaleMessage(locale).then(messages => {
+          console.log('Current locale:', i18n.locale);
+          console.log('Current messages:', messages);
+
+          this.$emit('localeChanged', locale);
+          this.$forceUpdate(); // Force update after changing the locale
+        });
       }
     },
     components: {
+    //  Navbar,
       Message,
       LoadingBar,
     },
