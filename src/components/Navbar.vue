@@ -24,11 +24,20 @@
  
           </div>
             <ul class="dropdown-menu text-small shadow">
+              <!--
               <li v-for="lang in languages" :key="lang.language">
                 <a class="dropdown-item" :class="{ active: lang.language === i18n.locale }" @click="changeLocale(lang.language)">
                   {{ lang.title }}
                 </a>
+              </li>-->
+              <li @click="changeLocale('en')">
+                <a class="dropdown-item" :class="{ active: 'en' === i18n.locale }">English</a>
               </li>
+              <li @click="changeLocale('es')">
+                <a class="dropdown-item" :class="{ active: 'es' === i18n.locale }">Español</a>
+              </li>
+    
+   
               <!--  
               <li><a class="dropdown-item" href="https://bustedweb.me/ja/" title="ja">日本</a></li>
               <li><a class="dropdown-item" href="https://bustedweb.me/fr/" title="fr">Français</a></li>
@@ -48,6 +57,8 @@
   
   <script setup>
   import i18n from '../plugins/i18n';
+  import { useRouter } from 'vue-router';
+  const router = useRouter();
 
   const languages = [
     { language: 'en', title: 'English' },
@@ -55,17 +66,14 @@
   ];
 
   const changeLocale = async (locale) => {
-  //  console.log('Changing locale to', locale);
     try {
       i18n.global.locale = locale;
 
       // Espera a que se carguen los mensajes antes de imprimirlos
       const messages = await i18n.global.getLocaleMessage(locale);
-    //  console.log('Current locale:', i18n.global.locale);
-    //  console.log('Current messages:', messages);
-
-      // Emite el evento 'localeChanged' con el nuevo idioma
-      //onLocaleChanged(locale);
+      //this.$router.push({ path: `/${locale}` });
+      router.push({ path: `/${locale}` });
+      console.log('Locale changed to:', locale);
       emit('localeChanged', locale);
     } catch (error) {
       console.error('Error in changeLocale:', error);
@@ -80,4 +88,4 @@
   .text-white:hover{
     color: #14253f ;
   }
-  </style>
+  </style> 

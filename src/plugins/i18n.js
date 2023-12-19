@@ -22,7 +22,8 @@ const i18n = createI18n({
       footerMsg:`BustedWeb nació tras crear la herramienta 'NoBrokenLinks'. Como el nombre lo indica, la finalidad era encontrar enlaces rotos en la web. Ahora, el objetivo es crear herramientas que ayuden a los desarrolladores a mejorar la experiencia de la web y SEO.`,
       footerMsg2:`Welcome to BustedWeb—empowering developers, one tool at a time.`
     }
-  }
+  },
+  path: '/:lang/',
 });
 
 console.log(i18n.messages);

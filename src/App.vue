@@ -6,6 +6,7 @@ export default {
   methods: {
     handleLocaleChanged(locale) {
       try {
+        
         console.log('Locale changed in App:', locale);
         // Aquí puedes realizar cualquier acción adicional si es necesario
       } catch (error) {
@@ -22,10 +23,9 @@ export default {
 
 <template>
   <div>
-    <Navbar @localeChanged="handleLocaleChanged"/>
+    <Navbar @localeChanged="handleLocaleChanged" />
     <router-view />
     <Footer />
- 
   </div>
 </template>
 
