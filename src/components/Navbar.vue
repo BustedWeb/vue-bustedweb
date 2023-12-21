@@ -86,6 +86,6 @@
     font-weight: 600 !important;
   }
   .text-white:hover{
-    color: #eb50c8 !importan ;
+    color: #eb50c8 !important ;
   }
   </style> 
