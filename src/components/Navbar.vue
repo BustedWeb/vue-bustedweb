@@ -31,10 +31,10 @@
                 </a>
               </li>-->
               <li @click="changeLocale('en')">
-                <a class="dropdown-item" :class="{ active: currentLocale === 'en' }" title="en">English</a>
+                <a class="dropdown-item" :class="{ active: i18n.locale === 'en' }" title="en">English</a>
               </li>
               <li @click="changeLocale('es')">
-                <a class="dropdown-item" :class="{ active: currentLocale === 'es' }" title="es">Español</a>
+                <a class="dropdown-item" :class="{ active: i18n.locale === 'es' }" title="es">Español</a>
               </li>
     
    
@@ -74,6 +74,8 @@
       //this.$router.push({ path: `/${locale}` });
       if (locale !== 'en'){
         router.push({ path: `/${locale}` });
+      }else{
+        router.push({ path: `/` });
       }
       console.log('Locale changed to:', locale);
       emit('localeChanged', locale);
