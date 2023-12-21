@@ -31,10 +31,10 @@
                 </a>
               </li>-->
               <li @click="changeLocale('en')">
-                <a class="dropdown-item" :class="{ active: 'en' === i18n.locale }">English</a>
+                <a class="dropdown-item" :class="{ active: currentLocale === 'en' }" title="en">English</a>
               </li>
               <li @click="changeLocale('es')">
-                <a class="dropdown-item" :class="{ active: 'es' === i18n.locale }">Español</a>
+                <a class="dropdown-item" :class="{ active: currentLocale === 'es' }" title="es">Español</a>
               </li>
     
    
@@ -72,7 +72,9 @@
       // Espera a que se carguen los mensajes antes de imprimirlos
       const messages = await i18n.global.getLocaleMessage(locale);
       //this.$router.push({ path: `/${locale}` });
-      router.push({ path: `/${locale}` });
+      if (locale !== 'en'){
+        router.push({ path: `/${locale}` });
+      }
       console.log('Locale changed to:', locale);
       emit('localeChanged', locale);
     } catch (error) {
