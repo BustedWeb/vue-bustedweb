@@ -1,15 +1,18 @@
-//import './assets/main.css'
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
+import i18n from './plugins/i18n';
+import Botton from '@obedvega/vuejs-components-library'
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
 import './assets/css/main.css';
-//import './assets/css/bootstrap.min.css';
-//import "../../bootstrap/dist/css/bootstrap.min.css";
-//import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+//import '@obedvega/vuejs-components-library';
 
 createApp(App)
-.use(router)
-.mount('#app')
+  .use(router)
+  .use(i18n)
+  .use(Botton)
+  .mount('#app');
+
+ 

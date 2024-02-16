@@ -4,9 +4,12 @@ import Analyzer from './views/Analyzer.vue';
 import Privacy from './views/privacy.vue';
 
 const routes = [
-  { path: '/', component: Home },
-  { path: '/analyzer', component: Analyzer },
-  { path: '/privacy', component: Privacy }
+  { path: '/:lang?', component: Home },
+  { path: '/:lang?/analyzer', component: Analyzer },
+  { path: '/:lang?/privacy', component: Privacy },
+  //  { path: '/', component: Home },
+  //  { path: '/analyzer', component: Analyzer },
+  //  { path: '/privacy', component: Privacy }
   // Puedes agregar rutas adicionales aquí según sea necesario
 ];
 
@@ -15,4 +18,6 @@ const router = createRouter({
   routes
 });
 
+
 export default router;
+

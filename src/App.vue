@@ -1,32 +1,29 @@
-<script setup>
+<script>
 import Navbar from './components/Navbar.vue';
 import Footer from './components/Footer.vue';
+
+export default {
+  methods: {
+    handleLocaleChanged(locale) {
+      try {
+        
+        console.log('Locale changed in App:', locale);
+        // Aquí puedes realizar cualquier acción adicional si es necesario
+      } catch (error) {
+        console.error('Error in handleLocaleChanged:', error);
+      }
+    }
+  },
+  components: {
+    Navbar,
+    Footer,
+  },
+};
 </script>
 
 <template>
-  <!--
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <Home />
-  </main>
-  -->
   <div>
-    <!--
-    <ul>
-        <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/analyzer">Analyzer</router-link></li>
-        
-      </ul>
-    -->
-    <Navbar />  
-    
+    <Navbar @localeChanged="handleLocaleChanged" />
     <router-view />
     <Footer />
   </div>
