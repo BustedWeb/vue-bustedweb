@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@obedvega/vuejs-components-library": "^0.0.6",
     "axios": "^1.6.2",
     "bootstrap": "^5.3.2",
     "vue": "^3.3.4",

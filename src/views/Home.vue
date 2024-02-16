@@ -3,12 +3,13 @@
     <div>
       
       <main class="landing-sc-page">
-        <Message />  
+      
         <section class="main-screen">
             <div class="wrapper">
                 <div class="content-part__wrapper">
-                    <h1 class="page-title">{{ $t('welcomeMsg') }}</h1>
+                    <h1 class="page-title">{{ $t('welcomeMsg') }} </h1>
                     <h3 class="page-desc">{{ $t('smallMsg') }}</h3>
+                    <Botton></Botton>
                     <div class="audit__testCase">
                         <div id="audit__form" class="article__seo-search audit__form free-trial-form" action="">
                             <span class="error"></span>

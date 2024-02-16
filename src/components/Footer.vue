@@ -6,14 +6,14 @@
           <img src="@/assets/img/bustedweb.jpg" alt="bustedweb" title="bustedweb" width="150px" height="44.92px">
           <ul class="list-unstyled small">
             <li class="mb-2">
-              BustedWeb was born after creating the tool 'NoBrokenLinks.' As the name suggests, its purpose was to find broken links on the web. Now, the goal is to build tools that help developers enhance the SEO experience.
+              {{ $t('footerMsg1') }}
             </li>
-            <li class="mb-2">Welcome to BustedWeb—empowering developers, one tool at a time.</li>
+            <li class="mb-2">{{ $t('footerMsg2') }}</li>
           </ul>
-          <p>© 2023 Busted web · <a href="/privacy">Privacy</a> </p>
+          <p>© 2023 Busted web · <a href="/privacy">{{ $t('Privacy') }}</a> </p>
         </div>
         <div class="col-6 col-lg-2 offset-lg-1 mb-3">
-          <h5>Tools</h5>
+          <h5>{{ $t('tools') }}</h5>
           <ul class="list-unstyled">
             <li class="mb-2"><a href="/">NoBrokenLinks</a></li>
             <li class="mb-2"><a href="/analyzer">Image Analyzer</a></li>

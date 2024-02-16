@@ -11,7 +11,9 @@ const i18n = createI18n({
       searchInput2:`Look for Broken Links`,
       introduceURL:'Please introduce you URL.',
       footerMsg1:`BustedWeb was born after creating the tool 'NoBrokenLinks.' As the name suggests, its purpose was to find broken links on the web. Now, the goal is to build tools that help developers enhance the SEO experience.`,
-      footerMsg2:`Welcome to BustedWeb—empowering developers, one tool at a time.`
+      footerMsg2:`Welcome to BustedWeb—empowering developers, one tool at a time.`,
+      Privacy:'Privacy',
+      tools:'Tools'
     },
     es: {
       welcomeMsg: 'Un broken link en su sitio web puede afectar negativamente la experiencia del usuario y el SEO.',
@@ -19,8 +21,10 @@ const i18n = createI18n({
       searchInput1:`Analiza tu sitio`,
       searchInput2:`Buscar Broken Links`,
       introduceURL:'Introduce tu URL',
-      footerMsg:`BustedWeb nació tras crear la herramienta 'NoBrokenLinks'. Como el nombre lo indica, la finalidad era encontrar enlaces rotos en la web. Ahora, el objetivo es crear herramientas que ayuden a los desarrolladores a mejorar la experiencia de la web y SEO.`,
-      footerMsg2:`Welcome to BustedWeb—empowering developers, one tool at a time.`
+      footerMsg1:`BustedWeb nació tras crear la herramienta 'NoBrokenLinks'. Como el nombre lo indica, la finalidad era encontrar enlaces rotos en la web. Ahora, el objetivo es crear herramientas que ayuden a los desarrolladores a mejorar la experiencia de la web y SEO.`,
+      footerMsg2:`Welcome to BustedWeb—empowering developers, one tool at a time.`,
+      Privacy:'Privacidad',
+      tools:'Herramientas'
     }
   },
   path: '/:lang/',
